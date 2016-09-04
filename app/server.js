@@ -19,6 +19,13 @@ app.post('/register', function (req, res) {
         res.send('register successfully');
 });
 
+app.post('/login', function (req, res) {
+    console.log(req.body);
+    console.log(res.statusCode);
+    if(res.statusCode === 200)
+        res.send('login successfully');
+});
+
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
