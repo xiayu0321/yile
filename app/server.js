@@ -1,9 +1,22 @@
-import express from 'express';
+var express = require('express');
+let app = express();
+let bodyParser=require('body-parser');
+let path = require('path');
 
-var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
+app.use(express.static('public'));
+
+app.get('/',function (req,res) {
+    res.sendFile(path.resolve('../public/html/register.html'));
+})
+
+app.post('/register', function (req, res) {
+    console.log(req.body);
+    console.log(res.statusCode);
+    if(res.statusCode === 200)
+        res.send('register successfully');
 });
 
 app.listen(3000, function () {
