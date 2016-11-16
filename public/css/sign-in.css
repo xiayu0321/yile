@@ -1,0 +1,77 @@
+body {
+    background: #FFFFFF;
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+}
+
+.content {
+    background: #FFFFFF;
+    margin: 150px auto auto;
+    border: 1px solid #E7E7E7;
+    width: 400px;
+    height: 235px;
+    text-align: center;
+}
+.username {
+    padding: 30px 0px 10px;
+    position: relative;
+}
+
+.user-logo {
+    background: url("../images/sign-in/username.png") no-repeat;
+    padding: 10px 10px;
+    position: absolute;
+    top: 46px;
+    left: 40px;
+}
+
+.password {
+    position: relative;
+}
+
+.password-logo {
+    background: url("../images/sign-in/password.png") no-repeat;
+    padding: 10px 10px;
+    position: absolute;
+    top: 15px;
+    left: 40px;
+}
+
+.input-field {
+    border: 1px solid #D2D3C9;
+    padding: 10px 0px 10px 35px;
+    width: 85%;
+    border-radius: 4px;
+}
+
+.input-field:focus {
+    border-color: #66afe9;
+}
+
+.down-footer {
+    height: 0px;
+    line-height: 32px;
+    margin-top: 30px;
+    padding-top: 13px;
+    border-top-color: #E7E7E7;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.footer-text {
+    margin: 0px 30px 20px 45px;
+}
+
+.sign-in {
+    background: #008EAD;
+    padding: 7px 10px;
+    border-radius: 4px;
+    border: 1px solid #1A7598;
+    border-image: none;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.settTextColor {
+    color: #CCCCCC;
+    margin-right: 20px;
+}
