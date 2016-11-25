@@ -3,6 +3,7 @@ import PersonalPage from './component/personal-page.jsx';
 import SignIn from './component/sign-in.jsx'
 import Index from './index.jsx';
 import Register from './component/register.jsx';
+import LoginAndRegister from './component/login-and-register-nav.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
@@ -12,7 +13,7 @@ require("bootstrap-webpack");
 
 const router = <Router history={hashHistory}>
   <Route path="/" component={App}>
-    <IndexRoute component={Index}/>
+    <IndexRoute component={LoginAndRegister}/>
     <Route path='/login' component={SignIn}/>
     <Route path='/register' component={Register}/>
     <Route path='/personalPage' component={PersonalPage}/>

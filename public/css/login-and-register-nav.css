@@ -1,0 +1,21 @@
+.login-frame {
+    margin-top: 2%;
+    margin-left: 11%;
+    width: 20%;
+    border-top:1px solid #9d9d9d;
+    border-left: 1px solid #9d9d9d;
+    border-bottom:1px solid #9d9d9d;
+    border-right: 1px solid #9d9d9d;
+}
+.row {
+    padding-top: 7%;
+    padding-left: 3%;
+    padding-bottom: 7%;
+    padding-right: 3%;
+    width:217%;
+}
+.but-group {
+    padding-bottom: 2%;
+    padding-right:2%;
+    padding-left: 2%;
+}
