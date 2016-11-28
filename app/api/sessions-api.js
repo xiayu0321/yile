@@ -7,7 +7,6 @@ const router = express.Router();
 router.post('/', (req, res, next) => {
     const account = req.body.account;
     const password = req.body.password;
-    console.log('1111111111111')
 
     if (_.isEmpty(account) || _.isEmpty(password)) {
         return res.status(400).send('account and password can not be null');

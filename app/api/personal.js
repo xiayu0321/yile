@@ -15,8 +15,8 @@ router.get('/', function (req, res, next) {
         validateToken(token, next, function (err, isValidateToken) {
             if (err) return next(err);
             if (isValidateToken) {
-                const useraccount = getUsernameFromToken(token);
-                return res.json({useraccount});
+                const userAccount = getUsernameFromToken(token);
+                return res.json({userAccount});
             }
             return res.sendStatus(401);
         });

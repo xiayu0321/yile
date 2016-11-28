@@ -1,4 +1,5 @@
 import React from "react";
+import request from 'superagent';
 import CheckPic from "../images/xuankeinfor/check.png";
 import ChoosePic from "../images/xuankeinfor/choose.png";
 import PersonPic from '../images/xuankeinfor/person.png';
@@ -15,21 +16,20 @@ class xuankeinfor extends React.Component {
     }
 
     componentWillMount() {
-        // const self = this;
-        // request
-        //     .get('/api/personal')
-        //     .end((err, res) => {
-        //         console.log(err);
-        //         if (err) {
-        //             if (res.statusCode === 401) {
-        //             } else {
-        //                 return alert('请先登录!');
-        //             }
-        //         }
-        //         console.log("statusCode:" + res.statusCode);
-        //         const {account} = res.body;
-        //         self.setState({account});
-        //     })
+        const self = this;
+        request.get('/api/personal')
+            .end((err, res) => {
+                console.log(err);
+                if (err) {
+                    if (res.statusCode === 401) {
+                    } else {
+                        return alert('请先登录!');
+                    }
+                }
+                console.log("statusCode:" + res.statusCode);
+                const {account} = res.body;
+                self.setState({account});
+            })
     }
 
     render() {
@@ -44,11 +44,11 @@ class xuankeinfor extends React.Component {
 
                         <div className="col-sm-4">
                             <img className="pic" src={ChoosePic}/>
-                            {/*<p><link className="btn btn-default" to="/" role="button">选择课程</link></p>*/}
+                            <p><a className="btn btn-default" to="/" role="button">选择课程</a></p>
                         </div>
                         <div className="col-sm-4">
                             <img className="pic" src={PersonPic}/>
-                            {/*<p><link className="btn btn-default" to="/" role="button">个人中心</link></p>*/}
+                            <p><a className="btn btn-default" to="/personPage" role="button">个人中心</a></p>
                         </div>
                     </div>
                 </div>
