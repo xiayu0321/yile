@@ -14,21 +14,21 @@ class LoginAndRegisterNav extends React.Component {
     }
 
     componentWillMount() {
-        // const self = this;
-        // request
-        //     .get('/api/personal')
-        //     .end((err, res) => {
-        //         console.log(err);
-        //         if (err) {
-        //             if (res.statusCode === 401) {
-        //             } else {
-        //                 return alert('请先登录!');
-        //             }
-        //         }
-        //         console.log("statusCode:" + res.statusCode);
-        //         const {account} = res.body;
-        //         self.setState({account});
-        //     })
+        const self = this;
+        request
+            .get('/api/personal')
+            .end((err, res) => {
+                console.log(err);
+                if (err) {
+                    if (res.statusCode === 401) {
+                    } else {
+                        return alert('请先登录!');
+                    }
+                }
+                console.log("statusCode:" + res.statusCode);
+                const {account} = res.body;
+                self.setState({account});
+            })
     }
 
     render() {
@@ -51,15 +51,21 @@ class LoginAndRegisterNav extends React.Component {
                                    onChange={this._onPasswordChange.bind(this)}/>
                         </div>
                     </div>
-                    <div className="form-group">
-                        <div className="group">
-                            <div className="col-sm-6 ">
-                                <a type="submit" className="btn btn-default"><link to="/">登录</link></a>
-                            </div>
-                            <div className="col-sm-6">
-                                <a className="btn btn-default"><link to ='register'>注册</link></a>
-                            </div>
-                        </div>
+                    {/*<div className="form-group">*/}
+                        {/*<div className="group">*/}
+                            {/*<div className="col-sm-6 ">*/}
+                                {/*<button type="submit" className="btn btn-default">登录</button>*/}
+                            {/*</div>*/}
+                            {/*<div className="col-sm-6">*/}
+                                {/*<button className="btn btn-default">注册</button>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                    <div id="div1">
+                        <ul className="nav nav-pills">
+                            <li role="presentation"><button type="submit" className="btn btn-default">登录</button></li>
+                            <li role="presentation"><button className="btn btn-default"><Link to="/register">注册</Link></button></li>
+                        </ul>
                     </div>
                 </form>
             </div>
