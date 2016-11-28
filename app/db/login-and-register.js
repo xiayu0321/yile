@@ -1,6 +1,5 @@
 import {User} from './schema';
 
-
 exports.insert = function (req, res) {
   const name = req.body.name;
   const password = req.body.password;

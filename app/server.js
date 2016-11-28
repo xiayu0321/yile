@@ -1,4 +1,3 @@
-/*eslint no-console: "off"*/
 import webpack from 'webpack';
 import webpackConfig from '../webpack.config';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -8,7 +7,6 @@ import apiRouter from './api/api.js';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import db from './db/db';
-
 
 var routes = require('./db/login-and-register.js');
 
@@ -35,10 +33,6 @@ app.use(webpackHotMiddleware(compiler, {
 app.use(express.static('./public'));
 
 app.use('/api', apiRouter);
-
-app.get('/hello', function (req, res) {
-  res.send('Index, world!');
-});
 
 app.post('/register', routes.insert);
 app.post('/login', routes.login);

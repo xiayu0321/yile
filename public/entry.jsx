@@ -1,7 +1,5 @@
 import App from './app.jsx';
 import PersonalPage from './component/personal-page.jsx';
-import SignIn from './component/sign-in.jsx'
-import Index from './index.jsx';
 import Register from './component/register.jsx';
 import LoginAndRegister from './component/login-and-register-nav.jsx';
 import React from 'react';
@@ -14,7 +12,6 @@ require("bootstrap-webpack");
 const router = <Router history={hashHistory}>
   <Route path="/" component={App}>
     <IndexRoute component={LoginAndRegister}/>
-    <Route path='/login' component={SignIn}/>
     <Route path='/register' component={Register}/>
     <Route path='/personalPage' component={PersonalPage}/>
   </Route>

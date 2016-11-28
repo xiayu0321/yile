@@ -7,15 +7,17 @@
     border-bottom:1px solid #9d9d9d;
     border-right: 1px solid #9d9d9d;
 }
-.row {
-    padding-top: 7%;
-    padding-left: 3%;
-    padding-bottom: 7%;
-    padding-right: 3%;
-    width:217%;
+
+.label-name {
+    padding-top: 2%;
+    text-align: right;
 }
-.but-group {
-    padding-bottom: 2%;
-    padding-right:2%;
-    padding-left: 2%;
+
+.group {
+    margin-left: 18%;
+}
+
+.layout-style {
+    margin-top: 6%;
+    margin-right: 7%;
 }

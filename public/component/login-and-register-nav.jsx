@@ -4,72 +4,99 @@ import request from 'superagent';
 import {hashHistory} from 'react-router';
 import '../css/login-and-register-nav.css';
 
-
 class LoginAndRegisterNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: 'unknown',
+            account: '',
+            password: ''
         }
     }
 
     componentWillMount() {
-        const self = this;
-        request
-            .get('/api/personal')
-            .end((err, res) => {
-                console.log(err);
-                if (err) {
-                    if (res.statusCode === 401) {
-                    } else {
-                        return alert('请先登录!');
-                    }
-                }
-                console.log("statusCode:" + res.statusCode);
-                const {username} = res.body;
-                self.setState({username});
-            })
+        // const self = this;
+        // request
+        //     .get('/api/personal')
+        //     .end((err, res) => {
+        //         console.log(err);
+        //         if (err) {
+        //             if (res.statusCode === 401) {
+        //             } else {
+        //                 return alert('请先登录!');
+        //             }
+        //         }
+        //         console.log("statusCode:" + res.statusCode);
+        //         const {account} = res.body;
+        //         self.setState({account});
+        //     })
     }
 
     render() {
-        return <div>
+        return (
             <div className="login-frame">
-                <div className="row">
-                    <div className="col-lg-6">
-                        <div className="input-group">
-                            <div className="input-group-btn">
-                                <label className="btn btn-default" type="button">用户名</label>
-                            </div>
-                            <input type="text" className="form-control"/>
+                <form className="form-horizontal layout-style" role="form" onSubmit={this._onSubmit.bind(this)}>
+                    <div className="form-group">
+                        <label for="account" className="col-sm-3 label-name">账号</label>
+                        <div className="col-sm-9">
+                            <input type="text" className="form-control" placeholder="请输入账号" id="account"
+                                   value={this.state.account}
+                                   onChange={this._onAccountChange.bind(this)}/>
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-lg-6">
-                        <div className="input-group">
-                            <div className="input-group-btn">
-                                <label className="btn btn-default" type="button">密 码</label>
-                            </div>
-                            <input type="text" className="form-control"/>
+                    <div className="form-group">
+                        <label for="password" className="col-sm-3 label-name">密码</label>
+                        <div className="col-sm-9">
+                            <input type="password" className="form-control" id="password" placeholder="请输入密码"
+                                   value={this.state.password}
+                                   onChange={this._onPasswordChange.bind(this)}/>
                         </div>
                     </div>
-                </div>
-                {/*<div>*/}
-                    {/*<ul className="nav nav-pills">*/}
-                        {/*<li role="presentation" className="active"><Link to="login">登录</Link></li>*/}
-                        {/*<li role="presentation"><Link to="/register">注册</Link></li>*/}
-                    {/*</ul>*/}
-                {/*</div>*/}
-                <div className="btn-group btn-group-justified but-group">
-                    <div className="btn-group">
-                        <button type="button" className="btn btn-default"><Link to="login">登录</Link></button>
+                    <div className="form-group">
+                        <div className="group">
+                            <div className="col-sm-6 ">
+                                <a type="submit" className="btn btn-default"><link to="/">登录</link></a>
+                            </div>
+                            <div className="col-sm-6">
+                                <a className="btn btn-default"><link to ='register'>注册</link></a>
+                            </div>
+                        </div>
                     </div>
-                    <div className="btn-group">
-                        <button type="button" className="btn btn-default"><Link to="/register">注册</Link></button>
-                    </div>
-                </div>
+                </form>
             </div>
-        </div>
+        )
+    }
+
+    _onAccountChange(event) {
+        this.setState({
+            account: event.target.value
+        });
+    }
+
+    _onPasswordChange(event) {
+        this.setState({
+            password: event.target.value
+        });
+    }
+
+    _onSubmit(event) {
+        event.preventDefault();
+        request.post('/api/sessions')
+            .send({
+                account: this.state.account,
+                password: this.state.password
+            })
+            .end((err, res) => {
+                if (res.statusCode === 201) {
+                    alert('login success');
+                    $("#login-frame").html('Welcome:' + '<a href="/#/personalPage">' + this.state.account + '</a>');
+                    hashHistory.push('/');
+                } else if (res.statusCode === 400 && res.text == 'account and password can not be null') {
+                    alert(res.text);
+                }
+                else if (res.statusCode === 401 && res.text === 'account or password is wrong') {
+                    alert(res.text);
+                }
+            })
     }
 }
 

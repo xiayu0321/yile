@@ -118,7 +118,7 @@ export default class Register extends Component {
                     }
                     if (res.statusCode === 201) {
                         alert("注册成功!");
-                        hashHistory.push('/index-rent');
+                        hashHistory.push('/');
                     }
                 });
         }
