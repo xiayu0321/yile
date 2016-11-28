@@ -51,20 +51,11 @@ class LoginAndRegisterNav extends React.Component {
                                    onChange={this._onPasswordChange.bind(this)}/>
                         </div>
                     </div>
-                    {/*<div className="form-group">*/}
-                        {/*<div className="group">*/}
-                            {/*<div className="col-sm-6 ">*/}
-                                {/*<button type="submit" className="btn btn-default">登录</button>*/}
-                            {/*</div>*/}
-                            {/*<div className="col-sm-6">*/}
-                                {/*<button className="btn btn-default">注册</button>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
+
                     <div id="div1">
                         <ul className="nav nav-pills">
                             <li role="presentation"><button type="submit" className="btn btn-default">登录</button></li>
-                            <li role="presentation"><button className="btn btn-default"><Link to="/register">注册</Link></button></li>
+                            <li role="presentation"><button className="btn btn-default"><Link className="but-register" to="/register">注册</Link></button></li>
                         </ul>
                     </div>
                 </form>

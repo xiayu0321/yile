@@ -10,7 +10,7 @@
 
 .label-name {
     padding-top: 2%;
-    text-align: right;
+    text-align: center;
 }
 
 .group {
@@ -24,8 +24,28 @@
 .nav {
     margin-left:25%;
 }
+.but-register:link {
+      color:#00b3ee;
+      font-size: 14px;
+      text-decoration:none;
+  }
+.but-register:visited {
+    color:#3c3c3c;
+    font-size: 14px;
+    text-decoration:none;
+}
+.but-register:hover {
+    color:#000000;
+    font-size: 14px;
+    text-decoration:none;
+}
+.but-register:active {
+    color:#FFFFFF;
+    font-size: 14px;
+    text-decoration:none;
+}
 
-link {
-    color: #000000;
-    font-size: 15px;
+.layout-style {
+    margin-bottom: 5%;
+    margin-left: 2%;
 }
