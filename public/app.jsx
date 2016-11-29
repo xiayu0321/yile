@@ -1,10 +1,12 @@
 import React from 'react';
 import TabsNavs from './component/navs.jsx';
+import './images/nav/nav.jpg';
+require('./css/app.css');
 
 export default class Index extends React.Component {
     render() {
         return (
-            <div>
+            <div className="app">
                 <div className="container-fluid ">
                     <div className="container-fluid">
                         <div>

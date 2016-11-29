@@ -8,8 +8,18 @@ const userSchema = new Schema({
     password: String,
     identity: String
 });
+
+const coursesSchema = new Schema({
+    courseId:String,
+    name:String,
+    teacher:String,
+    information:String,
+    isChosen:Boolean
+});
 const User = mongoose.model('User', userSchema);
+const Courses = mongoose.model('Courses',coursesSchema);
 
 export {
-    User
+    User,
+    Courses
 };

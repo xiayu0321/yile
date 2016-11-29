@@ -1,0 +1,72 @@
+[
+  {
+    "courseId": "1",
+    "name": "中国古代诗词鉴赏",
+    "teacher": "王永梅",
+    "information": "本课程将通过语言的媒介，让你获得对作品塑造的艺术形象或意境的具体感受，领略作品所蕴含的思想内容及艺术特色。",
+    "isChosen": false
+  },
+  {
+    "courseId": "2",
+    "name": "java语言编程与设计",
+    "teacher": "刘霞林",
+    "information": "本课程全面、系统地介绍了JAVA语言的基本概念、基本语法，最终讲述程序设计的基本概念与基本方法。",
+    "isChosen": false
+  },
+  {
+    "courseId": "3",
+    "name": "电路基础",
+    "teacher": "阴亚芳",
+    "information": "课程全面系统地论述了电路理论和电路分析的知识，包含路模型和电路定律、电路的分析计算法等。",
+    "isChosen": false
+  },
+  {
+    "courseId": "4",
+    "name": "面向对象程序设计",
+    "teacher": "王小银",
+    "information": "该课程细介绍了和C++语言基础、类和对象、继承、多态、模板和运算符重载，简要地讨论了几种常用的设计模式。",
+    "isChosen": false
+  },
+  {
+    "courseId": "5",
+    "name": "软件工程",
+    "teacher": "张庆生",
+    "information": "课程以广泛使用的结构化方法详细地阐述面向数据流的需求分析、系统设计、实现以及测试的开发方。",
+    "isChosen": false
+  },
+  {
+    "courseId": "6",
+    "name": "数据库原理及设计",
+    "teacher": "孟彩霞",
+    "information": "课程以全面系统的方法让你理解数据库，并且能够轻松掌握数据库。",
+    "isChosen": false
+  },
+  {
+    "courseId": "7",
+    "name": "中国近现代史纲要",
+    "teacher": "孙小龙",
+    "information": "课程主要阐述了自鸦片战争到五四运动80年的中国近代史到发展的现在。",
+    "isChosen": false
+  },
+  {
+    "courseId": "8",
+    "name": "操作系统",
+    "teacher": "王妍",
+    "information": "课程从易用性和实用性角度出发，注重对学生进行实际动手能力的培养，提高学生对Linux系统日常维护能力。",
+    "isChosen": false
+  },
+  {
+    "courseId": "9",
+    "name": "c++程序设计",
+    "teacher": "张德慧",
+    "information": "课程根据面向对象程序设计课程基本教学要求，系统讲解面向对象程序设计的基本理论，用C++语言实现面向对象基本特性的技术。",
+    "isChosen": false
+  },
+  {
+    "courseId": "10",
+    "name": "形式与政策",
+    "teacher": "夏雨",
+    "information": "本课程介绍当前国内外经济政治形势、国际关系，阐明了我国政府的基本原则、基本立场与应对政策。",
+    "isChosen": false
+  }
+]

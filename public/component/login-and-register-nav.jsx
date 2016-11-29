@@ -14,21 +14,21 @@ class LoginAndRegisterNav extends React.Component {
     }
 
     componentWillMount() {
-        const self = this;
-        request
-            .get('/api/personal')
-            .end((err, res) => {
-                console.log(err);
-                if (err) {
-                    if (res.statusCode === 401) {
-                    } else {
-                        return alert('请先登录!');
-                    }
-                }
-                console.log("statusCode:" + res.statusCode);
-                const {account} = res.body;
-                self.setState({account});
-            })
+        // const self = this;
+        // request
+        //     .get('/api/personal')
+        //     .end((err, res) => {
+        //         console.log(err);
+        //         if (err) {
+        //             if (res.statusCode === 401) {
+        //             } else {
+        //                 return alert('请先登录!');
+        //             }
+        //         }
+        //         console.log("statusCode:" + res.statusCode);
+        //         const {account} = res.body;
+        //         self.setState({account});
+        //     })
     }
 
     render() {

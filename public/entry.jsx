@@ -2,6 +2,7 @@ import App from './app.jsx';
 import PersonalPage from './component/personal-page.jsx';
 import Register from './component/register.jsx';
 import Index from './index.jsx';
+import AllCourses from './component/allCourses.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
@@ -10,20 +11,21 @@ require('jquery');
 require("bootstrap-webpack");
 
 const router = <Router history={hashHistory}>
-  <Route path="/" component={App}>
-    <IndexRoute component={Index}/>
-    <Route path='/register' component={Register}/>
-    <Route path='/personalPage' component={PersonalPage}/>
-  </Route>
+    <Route path="/" component={App}>
+        <IndexRoute component={Index}/>
+        <Route path='/register' component={Register}/>
+        <Route path='/allCourses' component={AllCourses}/>
+        <Route path='/personalPage' component={PersonalPage}/>
+    </Route>
 </Router>;
 
 ReactDOM.render(
-  router,
-  document.getElementById("content")
+    router,
+    document.getElementById("content")
 );
 
 console.log($('#content').text());
 
 if (module.hot) {
-  module.hot.accept();
+    module.hot.accept();
 }
