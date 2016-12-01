@@ -14,26 +14,30 @@ class LoginAndRegisterNav extends React.Component {
     }
 
     componentWillMount() {
-        // const self = this;
-        // request
-        //     .get('/api/personal')
-        //     .end((err, res) => {
-        //         console.log(err);
-        //         if (err) {
-        //             if (res.statusCode === 401) {
-        //             } else {
-        //                 return alert('请先登录!');
-        //             }
-        //         }
-        //         console.log("statusCode:" + res.statusCode);
-        //         const {account} = res.body;
-        //         self.setState({account});
-        //     })
+        request
+            .post('/api/personal')
+            .set('X-API-Key', 'foobar')
+            .set('Accept', 'application/json')
+            .end((err, res) => {
+                console.log(err);
+                if (err) {
+                    if (res.statusCode === 401) {
+                        // alert('please login!');
+                        // return hashHistory.push('/');
+                    } else {
+                        return alert('请先登录!');
+                    }
+                }
+                console.log("statusCode:" + res.statusCode);
+                const {username} = res.body;
+                this.setState({username});
+            })
     }
 
     render() {
         return (
             <div className="login-frame">
+                <div id="entirety">
                 <form className="form-horizontal layout-style" role="form" onSubmit={this._onSubmit.bind(this)}>
                     <div className="form-group">
                         <label for="account" className="col-sm-3 label-name">账号</label>
@@ -59,6 +63,7 @@ class LoginAndRegisterNav extends React.Component {
                         </ul>
                     </div>
                 </form>
+            </div>
             </div>
         )
     }
@@ -86,6 +91,7 @@ class LoginAndRegisterNav extends React.Component {
                 if (res.statusCode === 201) {
                     alert('login success');
                     hashHistory.push('/');
+                    $("#entirety").html('Welcome:');
                 } else if (res.statusCode === 400 && res.text == 'account and password can not be null') {
                     alert(res.text);
                 }

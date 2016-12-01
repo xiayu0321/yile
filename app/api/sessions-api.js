@@ -18,7 +18,7 @@ router.post('/', (req, res, next) => {
                 return res.status(401).send('account or password is wrong');
             }
             else if (userData.password === password) {
-                res.cookie('token', generateInfo(account, password), {maxAge: 10 * 1000});
+                res.cookie('token', generateInfo(account, password), {maxAge: 100 * 1000});
                 return res.status(201).send('login success');
             }
         });

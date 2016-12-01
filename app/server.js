@@ -35,9 +35,10 @@ app.use(express.static('./public'));
 app.use('/api', apiRouter);
 
 app.post('/register', routes.insert);
-app.post('/login', routes.login);
+app.post('/', routes.login);
+
 if (require.main === module) {
-  app.listen(process.env.PORT || 3000, function () {
+  app.listen(3000, function () {
     db.connect((err) => {
       if (err) return console.error('db connection failed');
     });

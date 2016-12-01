@@ -6,33 +6,33 @@ export default class PersonalPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'unknown',
+      name: 'unknown',
     }
   }
 
   componentWillMount() {
-    request
-      .get('/api/personal')
-      .end((err, res) => {
-        console.log(err);
-        if (err) {
-          if (res.statusCode === 401) {
-            alert('please login!');
-            return hashHistory.push('/login');
-          } else {
-            return alert('请先登录!');
+      request
+        .post('/api/personal')
+          .set('X-API-Key', 'foobar')
+          .set('Accept', 'application/json')
+        .end((err, res) => {
+          console.log(err);
+          if (err) {
+            if (res.statusCode === 401) {
+            } else {
+                return alert('请先登录!');
+            }
           }
-        }
-        console.log("statusCode:" + res.statusCode);
-        const {username} = res.body;
-        this.setState({username});
-      })
+          console.log("statusCode:" + res.statusCode);
+          const {username} = res.body;
+          this.setState({username});
+        })
   }
 
   render() {
     return <div>
       <div>Personal Page</div>
-      <div>Username: {this.state.username}</div>
+      <div>Username: {this.state.name}</div>
       <div>Greeting:</div>
     </div>;
   }

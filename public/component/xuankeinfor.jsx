@@ -3,7 +3,7 @@ import request from 'superagent';
 import CheckPic from "../images/xuankeinfor/check.png";
 import ChoosePic from "../images/xuankeinfor/choose.png";
 import PersonPic from '../images/xuankeinfor/person.png';
-import {Link} from 'react-router';
+import {Link,hashHistory} from 'react-router';
 require('../css/xuankeinfor.css');
 
 class xuankeinfor extends React.Component {
@@ -16,20 +16,22 @@ class xuankeinfor extends React.Component {
     }
 
     componentWillMount() {
-        // const self = this;
-        // request.get('/api/personal')
-        //     .end((err, res) => {
-        //         console.log(err);
-        //         if (err) {
-        //             if (res.statusCode === 401) {
-        //             } else {
-        //                 return alert('请先登录!');
-        //             }
-        //         }
-        //         console.log("statusCode:" + res.statusCode);
-        //         const {account} = res.body;
-        //         self.setState({account});
-        //     })
+        request
+            .post('/api/personal')
+            .set('X-API-Key', 'foobar')
+            .set('Accept', 'application/json')
+            .end((err, res) => {
+                console.log(err);
+                if (err) {
+                    if (res.statusCode === 401) {
+                    } else {
+                        return alert('请先登录!');
+                    }
+                }
+                console.log("statusCode:" + res.statusCode);
+                const {username} = res.body;
+                this.setState({username});
+            })
     }
 
     render() {
@@ -48,7 +50,7 @@ class xuankeinfor extends React.Component {
                         </div>
                         <div className="col-sm-4">
                             <img className="pic" src={PersonPic}/>
-                           <p><Link className="btn btn-default" to="/personPage" role="button">个人中心</Link></p>
+                           <p><Link className="btn btn-default" to="/personalPage" role="button">个人中心</Link></p>
                         </div>
                     </div>
                 </div>

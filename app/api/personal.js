@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 const router = express.Router();
 
-router.get('/', function (req, res, next) {
+router.post('/', function (req, res, next) {
     const token = req.cookies['token'];
 
     if (_.isEmpty(token) || token === 'undefined') {
