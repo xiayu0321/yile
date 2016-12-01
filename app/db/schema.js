@@ -16,10 +16,18 @@ const coursesSchema = new Schema({
     information:String,
     isChosen:Boolean
 });
+
+const chosenCourseSchema = new Schema({
+    account:String,
+    chosenCourses:String
+});
+
 const User = mongoose.model('User', userSchema);
 const Courses = mongoose.model('Courses',coursesSchema);
+const ChosenCourses = mongoose.model('ChosenCourses',chosenCourseSchema);
 
 export {
     User,
-    Courses
+    Courses,
+    ChosenCourses
 };

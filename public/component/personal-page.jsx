@@ -6,7 +6,7 @@ export default class PersonalPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'unknown',
+      username: 'unknown',
     }
   }
 
@@ -19,20 +19,22 @@ export default class PersonalPage extends Component {
           console.log(err);
           if (err) {
             if (res.statusCode === 401) {
+                alert('请先登录!');
+                return hashHistory.push('/');
             } else {
                 return alert('请先登录!');
             }
           }
           console.log("statusCode:" + res.statusCode);
-          const {username} = res.body;
-          this.setState({username});
+          const {userAccount} = res.body;
+          this.setState({userAccount});
         })
   }
 
   render() {
     return <div>
       <div>Personal Page</div>
-      <div>Username: {this.state.name}</div>
+      <div>Username: {this.state.userAccount}</div>
       <div>Greeting:</div>
     </div>;
   }

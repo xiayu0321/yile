@@ -13,27 +13,6 @@ class LoginAndRegisterNav extends React.Component {
         }
     }
 
-    componentWillMount() {
-        request
-            .post('/api/personal')
-            .set('X-API-Key', 'foobar')
-            .set('Accept', 'application/json')
-            .end((err, res) => {
-                console.log(err);
-                if (err) {
-                    if (res.statusCode === 401) {
-                        // alert('please login!');
-                        // return hashHistory.push('/');
-                    } else {
-                        return alert('请先登录!');
-                    }
-                }
-                console.log("statusCode:" + res.statusCode);
-                const {username} = res.body;
-                this.setState({username});
-            })
-    }
-
     render() {
         return (
             <div className="login-frame">
@@ -91,7 +70,7 @@ class LoginAndRegisterNav extends React.Component {
                 if (res.statusCode === 201) {
                     alert('login success');
                     hashHistory.push('/');
-                    $("#entirety").html('Welcome:');
+                    $(".login-frame").html('欢迎' + '<p>'+'<a href="/#/personalPage">' + this.state.account + '</a>'+'用户</p>'+'<p>'+'进入答题系统</p>');
                 } else if (res.statusCode === 400 && res.text == 'account and password can not be null') {
                     alert(res.text);
                 }
