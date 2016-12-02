@@ -21,35 +21,32 @@ class CheckCourses extends React.Component {
                 if (err) {
                     if (res.statusCode === 401) {
                         alert('请先登录!');
+                        hashHistory.push('/');
                     } else {
                         return alert('请先登录!');
                     }
                 }
                 console.log("statusCode:" + res.statusCode);
                 const {userAccount} = res.body;
-                this.setState({userAccount});
-            })
+                this.setState({userAccount})
 
-        request
-            .post('/api/courseSelection')
-            .send({
-                account: this.state.userAccount
-            })
-                .end((err, res) => {
-                    if (res.statusCode === 400) {
-                        alert("无该用户");
-                    }
-                    if (res.statusCode === 200) {
-                        this.setState({
-                            chosenCourses: res.body.chosenCourses
-                        });
-                        alert("刷新成功!");
-                    }
-                });
-            // .end((err, data) => {
-            //     this.setState({
-            //         chosenCourses: data.body
-            // });
+                 request
+                     .post('/api/courseSelection')
+                     .send({
+                        account: this.state.userAccount
+                     })
+                     .end((err, res) => {
+                        if (res.statusCode === 400) {
+                            alert("无该用户");
+                        }
+                        if (res.statusCode === 200) {
+                            this.setState({
+                                chosenCourses: res.body
+                            });
+                            alert("刷新成功!");
+                        }
+                    });
+            });
     }
 
     render() {

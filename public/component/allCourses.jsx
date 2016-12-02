@@ -23,7 +23,6 @@ class AllCourses extends React.Component {
                 console.log(err);
                 if (err) {
                     if (res.statusCode === 401) {
-
                         return hashHistory.push('/');
                         alert('请先登录!');
                     } else {
@@ -33,7 +32,7 @@ class AllCourses extends React.Component {
                 console.log("statusCode:" + res.statusCode);
                 const {userAccount} = res.body;
                 this.setState({userAccount});
-            })
+            });
         request
             .post('/api/courses')
             .end((err, data) => {
@@ -108,7 +107,6 @@ class AllCourses extends React.Component {
                     if (res.statusCode === 201) {
                         alert("选课成功!");
                         hashHistory.push('/');
-                        $(".login-frame").html('欢迎' + '<p>'+'<a href="/#/personalPage">' + this.state.userAccount + '</a>'+'用户</p>'+'<p>'+'进入答题系统</p>');
                     }
                 });
         }
