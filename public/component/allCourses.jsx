@@ -16,20 +16,31 @@ class AllCourses extends React.Component {
 
     componentDidMount() {
         request
+            .post('/api/personal')
+            .set('X-API-Key', 'foobar')
+            .set('Accept', 'application/json')
+            .end((err, res) => {
+                console.log(err);
+                if (err) {
+                    if (res.statusCode === 401) {
+
+                        return hashHistory.push('/');
+                        alert('请先登录!');
+                    } else {
+                        return alert('请先登录!');
+                    }
+                }
+                console.log("statusCode:" + res.statusCode);
+                const {userAccount} = res.body;
+                this.setState({userAccount});
+            })
+        request
             .post('/api/courses')
             .end((err, data) => {
                 this.setState({
                     courses: data.body
                 });
             });
-        request
-            .post('/api/personal')
-            .set('X-API-Key', 'foobar')
-            .set('Accept', 'application/json')
-            .end((err, res) => {
-                const {userAccount} = res.body;
-                this.setState({userAccount});
-            })
     }
 
     render() {
@@ -37,7 +48,7 @@ class AllCourses extends React.Component {
         return (<div className="allstyle">
                     <form className="form-horizontal wordstyle" role="form" onSubmit={this._onSubmit.bind(this)}>
                            <table className="table table-bordered">
-                               <caption className="choose-title"><h2>选课课表<span>(最多选5门)</span></h2></caption>
+                               <caption className="choose-title"><h2>全部课表<span>(最多选5门)</span></h2></caption>
                               <thead>
                                  <tr>
                                      <th>序号</th>
@@ -97,6 +108,7 @@ class AllCourses extends React.Component {
                     if (res.statusCode === 201) {
                         alert("选课成功!");
                         hashHistory.push('/');
+                        $(".login-frame").html('欢迎' + '<p>'+'<a href="/#/personalPage">' + this.state.userAccount + '</a>'+'用户</p>'+'<p>'+'进入答题系统</p>');
                     }
                 });
         }

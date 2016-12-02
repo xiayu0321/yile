@@ -41,7 +41,7 @@ class xuankeinfor extends React.Component {
                     <div className="row" id="summary-container">
                         <div className="col-sm-4">
                             <img className="pic" src={CheckPic}/>
-                            <p><Link className="btn btn-default" to="/" role="button">查看选课</Link></p>
+                            <p><Link className="btn btn-default" to="/CheckCourses" role="button">查看选课</Link></p>
                         </div>
 
                         <div className="col-sm-4">
