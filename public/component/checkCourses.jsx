@@ -1,5 +1,6 @@
 import React from 'react';
 import request from 'superagent';
+import {Link} from 'react-router';
 import {hashHistory} from 'react-router';
 
 class CheckCourses extends React.Component {
@@ -7,7 +8,8 @@ class CheckCourses extends React.Component {
         super(props);
         this.state = {
             userAccount:'',
-            chosenCourses:[]
+            chosenCourses:[],
+            chosenCoursesDetail:[]
         }
     }
 
@@ -43,13 +45,24 @@ class CheckCourses extends React.Component {
                             this.setState({
                                 chosenCourses: res.body
                             });
-                            alert("刷新成功!");
+
+                            request
+                                .post('/api/courses/check')
+                                .send({
+                                    chosenCourses: this.state.chosenCourses
+                                })
+                                .end((err, data) => {
+                                    this.setState({
+                                        chosenCoursesDetail: data.body
+                                    });
+                                });
                         }
                     });
             });
     }
 
     render() {
+        const {chosenCoursesDetail}  = this.state;
         return (<div className="allstyle">
                 <form className="form-horizontal wordstyle" role="form">
                     <table className="table table-bordered">
@@ -62,6 +75,22 @@ class CheckCourses extends React.Component {
                             <th>状态</th>
                         </tr>
                         </thead>
+                        {chosenCoursesDetail.filter(item => item.courseId.toLowerCase()).map(i =>
+                            <tbody>
+                            <tr>
+                                <td>{i.courseId}</td>
+                                <td>{i.name}</td>
+                                <td>{i.teacher}</td>
+                                <td>
+                                    <div>
+                                    <ul className="nav nav-pills">
+                                       <button className="btn btn-default"><Link className="but-register" to="/">未考试</Link></button>
+                                    </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        )}
                     </table>
                 </form>
             </div>
