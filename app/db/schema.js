@@ -22,12 +22,33 @@ const chosenCourseSchema = new Schema({
     chosenCourses:String
 });
 
+const questionsSchema = new Schema({
+    courseId:String,
+    questionId:String,
+    question:String,
+    A:String,
+    B:String,
+    C:String,
+    D:String,
+    rightAnswer:String
+});
+
+const examResultSchema = new Schema({
+    courseId:String,
+    myAnswer:String,
+    score:Number
+});
+
 const User = mongoose.model('User', userSchema);
 const Courses = mongoose.model('Courses',coursesSchema);
 const ChosenCourses = mongoose.model('ChosenCourses',chosenCourseSchema);
+const Questions = mongoose.model('questions',questionsSchema);
+const ExamResult = mongoose.model('ExamResult',examResultSchema);
 
 export {
     User,
     Courses,
-    ChosenCourses
+    ChosenCourses,
+    Questions,
+    ExamResult
 };

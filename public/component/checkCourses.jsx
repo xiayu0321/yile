@@ -1,7 +1,7 @@
 import React from 'react';
 import request from 'superagent';
-import {Link} from 'react-router';
 import {hashHistory} from 'react-router';
+import {Link} from 'react-router';
 
 class CheckCourses extends React.Component {
     constructor(props) {
@@ -82,11 +82,9 @@ class CheckCourses extends React.Component {
                                 <td>{i.name}</td>
                                 <td>{i.teacher}</td>
                                 <td>
-                                    <div>
                                     <ul className="nav nav-pills">
-                                       <button className="btn btn-default"><Link className="but-register" to="/">未考试</Link></button>
+                                        <li><button className="btn btn-default"><Link to={'/exam/'+i.courseId}>考试</Link></button></li>
                                     </ul>
-                                    </div>
                                 </td>
                             </tr>
                             </tbody>

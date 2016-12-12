@@ -28,10 +28,10 @@ router.post('/check', function (req, res) {
 
         chosenCoursesDetail = _.filter(chosenCourse, function (course) {
              return (_.includes(coursesID, course.courseId) === true);
-         })
+         });
         res.json(chosenCoursesDetail);
     });
-})
+});
 
 
 export default router;

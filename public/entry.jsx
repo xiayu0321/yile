@@ -4,6 +4,7 @@ import Register from './component/register.jsx';
 import Index from './index.jsx';
 import AllCourses from './component/allCourses.jsx';
 import CheckCourses from './component/checkCourses.jsx';
+import Exam from './component/exam.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
@@ -18,6 +19,7 @@ const router = <Router history={hashHistory}>
         <Route path='/allCourses' component={AllCourses}/>
         <Route path='/CheckCourses' component={CheckCourses}/>
         <Route path='/personalPage' component={PersonalPage}/>
+        <Route path='/exam/:id' component={Exam}/>
     </Route>
 </Router>;
 
