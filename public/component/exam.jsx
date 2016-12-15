@@ -7,6 +7,7 @@ class Exam extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            courseId:'',
             questions: [],
             myAnswer: []
         }
@@ -43,22 +44,22 @@ class Exam extends React.Component {
                                 <tr>
                                     <div>
                                     <label className="checkbox-inline input">
-                                        <input type="radio" name="optionsRadiosinline" id={i.questionId+"A:"+i.rightAnswer}
+                                        <input type="radio" name={i.questionId} id="A"
                                                value={this.state.myAnswer}
                                                onClick={this._onAnswerClick.bind(this)}/>{i.A}
                                     </label>
                                     <label className="checkbox-inline">
-                                        <input type="radio" name="optionsRadiosinline" id={i.questionId+"B:"+i.rightAnswer}
+                                        <input type="radio" name={i.questionId} id="B"
                                                value={this.state.myAnswer}
                                                onClick={this._onAnswerClick.bind(this)}/>{i.B}
                                     </label>
                                     <label className="checkbox-inline">
-                                        <input type="radio" name="optionsRadiosinline" id={i.questionId+"C:"+i.rightAnswer}
+                                        <input type="radio" name={i.questionId} id="C"
                                                value={this.state.myAnswer}
                                                onClick={this._onAnswerClick.bind(this)}/>{i.C}
                                     </label>
                                     <label className="checkbox-inline">
-                                        <input type="radio" name="optionsRadiosinline" id={i.questionId+"D:"+i.rightAnswer}
+                                        <input type="radio" name={i.questionId} id="D"
                                                value={this.state.myAnswer}
                                                onClick={this._onAnswerClick.bind(this)}/>{i.D}
                                     </label>
@@ -78,11 +79,9 @@ class Exam extends React.Component {
     _onAnswerClick(event) {
         if (event.target.checked) {
             var newArray = this.state.myAnswer;
-            newArray.push(event.target.id);
+            newArray[event.target.name] = event.target.id;
         }
-
-        this.setState({myAnswer: newArray,
-        });
+        this.setState({myAnswer: newArray});
     }
 
     _onSubmit(event) {
@@ -90,6 +89,7 @@ class Exam extends React.Component {
         request
             .post('/api/result')
             .send({
+                courseId:this.props.params.id,
                 myAnswer: this.state.myAnswer
             })
             .end((err, res) => {

@@ -1,5 +1,7 @@
 import express from 'express';
 import {ExamResult} from '../db/schema';
+import {Questions} from '../db/schema';
+import _ from 'lodash';
 const router = express.Router();
 
 // function existEmpty(userData) {
@@ -25,10 +27,17 @@ const router = express.Router();
 
 router.post('/', function (req, res, next) {
     const resultData = req.body;
+    let rightAnswers = [];
 
-    console.log("lsdfjcmsdld"+resultData.myAnswer);
+    //console.log(resultData.courseId+"lsdfjcmsdld"+resultData.myAnswer);
 
+    Questions.find({courseId:resultData.courseId},function (err,docs) {
+        rightAnswers = _.filter(docs , doc => {
+            return doc.rightAnswer
+        })
+    })
 
+    console.log("uhininini"+rightAnswers);
 
     // const legal = isUserInformationLegal(userData);
     //
