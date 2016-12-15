@@ -34,6 +34,7 @@ const questionsSchema = new Schema({
 });
 
 const examResultSchema = new Schema({
+    account:String,
     courseId:String,
     myAnswer:String,
     score:Number

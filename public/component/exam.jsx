@@ -1,12 +1,13 @@
 import React from 'react';
 import request from 'superagent';
-import _ from 'lodash';
+import {hashHistory} from 'react-router';
 import '../css/exam.css'
 
 class Exam extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            userAccount:'',
             courseId:'',
             questions: [],
             myAnswer: []
@@ -14,6 +15,16 @@ class Exam extends React.Component {
     }
 
     componentDidMount() {
+        request
+            .post('/api/personal')
+            .end((err, res) => {
+                if (err) {
+                  console.log(err);
+                }
+                console.log("statusCode:" + res.statusCode);
+                const {userAccount} = res.body;
+                this.setState({userAccount})
+            })
         request
             .post('/api/exam')
             .end((err, res) => {
@@ -89,11 +100,18 @@ class Exam extends React.Component {
         request
             .post('/api/result')
             .send({
+                userAccount:this.state.userAccount,
                 courseId:this.props.params.id,
                 myAnswer: this.state.myAnswer
             })
             .end((err, res) => {
-                alert("fvnskjdsjmfn" + res.body);
+                if (res.statusCode === 409) {
+                    alert("你已经完成过考试!");
+                }
+                if (res.statusCode === 201) {
+                    alert("提交成功!");
+                }
+                hashHistory.push('/CheckCourses');
             });
     }
 }
