@@ -7,7 +7,7 @@ export default class PersonalPage extends Component {
         super(props);
         this.state = {
             userAccount: 'unknown',
-            Detail:''
+            Detail:[]
         }
     }
 
@@ -25,7 +25,8 @@ export default class PersonalPage extends Component {
                     }
                 }
                 const {userAccount} = res.body;
-                this.setState({userAccount});
+                let detail = res.body.detail;
+                this.setState({userAccount:userAccount,Detail:detail});
     })
     }
 
@@ -39,6 +40,7 @@ export default class PersonalPage extends Component {
                         <tr>
                             <th>序号</th>
                             <th>课程名称</th>
+                            <th>老师</th>
                             <th>成绩</th>
                         </tr>
                         </thead>
@@ -47,6 +49,7 @@ export default class PersonalPage extends Component {
                             <tr>
                                 <td>{i.courseId}</td>
                                 <td>{i.name}</td>
+                                <td>{i.teacher}</td>
                                 <td>{i.score}</td>
                             </tr>
                             </tbody>

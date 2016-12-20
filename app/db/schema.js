@@ -37,7 +37,7 @@ const examResultSchema = new Schema({
     account:String,
     courseId:String,
     myAnswer:String,
-    score:Number
+    score:String
 });
 
 const User = mongoose.model('User', userSchema);

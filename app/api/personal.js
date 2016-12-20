@@ -9,8 +9,6 @@ const router = express.Router();
 
 router.post('/', function (req, res, next) {
     const token = req.cookies['token'];
-    let  score ;
-    let detail;
 
     if (_.isEmpty(token) || token === 'undefined') {
         return res.sendStatus(401);
@@ -20,19 +18,17 @@ router.post('/', function (req, res, next) {
             if (err) return next(err);
             if (isValidateToken) {
                 const userAccount = getUsernameFromToken(token);
-
                 ExamResult.find({account:userAccount},function(err,docs){
-                     console.log("11323214521621"+docs[0].score);
-                    score = docs[0].score;
-                    Courses.find({courseId:docs[0].courseId},function(err,info){
-                        console.log("ifweinfiwfn"+info[0].name);
-                        detail = info[0];
-
-                    });
-                });
-                return res.json({userAccount});
+                        find_Courses(docs, function (detail) {
+                            if(detail === null) {
+                                return res.json({userAccount});
+                            }
+                            else {
+                                return res.json({userAccount: userAccount, detail: detail});
+                            }
+                        })
+            });
             }
-            return res.sendStatus(401);
         });
     }
 });
@@ -66,6 +62,27 @@ function findUser(account, next, callback) {
         callback(null, userData);
     });
 }
+
+function find_Courses(docs,callback) {
+    let i=0,detail=[];
+    let examResult = docs;
+    if(docs.length === 0 || examResult == undefined)
+        return callback(null,false) ;
+    else {
+        Courses.find({courseId: docs[i].courseId}, function (err, info) {
+            detail.push({
+                courseId: info[i].courseId,
+                name: info[i].name,
+                teacher: info[i].teacher,
+                score:examResult[i].score
+            });
+            i++;
+            if (i == docs.length) {
+                return callback(detail, null);
+            }
+        })
+    }
+}
+
+
 export default router;
-
-
