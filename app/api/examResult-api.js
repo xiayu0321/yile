@@ -4,7 +4,7 @@ import {Questions} from '../db/schema';
 const router = express.Router();
 
 function isExist(userData, next, callback) {
-    ExamResult.findOne({account: userData.userAccount}, function (err, doc) {
+    ExamResult.findOne({courseId: userData.courseId}, function (err, doc) {
         if (err) return next(err);
 
         callback(null, doc);

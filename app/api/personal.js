@@ -18,16 +18,16 @@ router.post('/', function (req, res, next) {
             if (err) return next(err);
             if (isValidateToken) {
                 const userAccount = getUsernameFromToken(token);
-                ExamResult.find({account:userAccount},function(err,docs){
-                        find_Courses(docs, function (detail) {
-                            if(detail === null) {
-                                return res.json({userAccount});
-                            }
-                            else {
-                                return res.json({userAccount: userAccount, detail: detail});
-                            }
-                        })
-            });
+                ExamResult.find({account: userAccount}, function (err, docs) {
+                    find_Courses(docs, function (detail) {
+                        if (detail === null) {
+                            return res.json({userAccount});
+                        }
+                        else {
+                            return res.json({userAccount: userAccount, detail: detail});
+                        }
+                    })
+                });
             }
         });
     }
@@ -63,26 +63,29 @@ function findUser(account, next, callback) {
     });
 }
 
-function find_Courses(docs,callback) {
-    let i=0,detail=[];
-    let examResult = docs;
-    if(docs.length === 0 || examResult == undefined)
-        return callback(null,false) ;
+function find_Courses(docs, callback) {
+    let i = 0, detail = [];
+
+    if (docs.length === 0)
+        return callback(null, false);
+
     else {
-        Courses.find({courseId: docs[i].courseId}, function (err, info) {
-            detail.push({
-                courseId: info[i].courseId,
-                name: info[i].name,
-                teacher: info[i].teacher,
-                score:examResult[i].score
+        _.map(docs, function(doc){
+            Courses.findOne({courseId: doc.courseId}, function (err, info) {
+                console.log("name:"+info.name);
+                detail.push({
+                    courseId: info.courseId,
+                    name: info.name,
+                    teacher: info.teacher,
+                    score: doc.score
+                });
+                 i++;
+                if (i === docs.length) {
+                    return callback(detail, null);
+                }
             });
-            i++;
-            if (i == docs.length) {
-                return callback(detail, null);
-            }
         })
+        }
     }
-}
 
-
-export default router;
+    export default router;

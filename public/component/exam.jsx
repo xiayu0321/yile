@@ -29,7 +29,6 @@ class Exam extends React.Component {
             .post('/api/exam')
             .end((err, res) => {
                 console.log(res.statusCode);
-
                 request
                     .post('/api/exam/content')
                     .send({courseId: this.props.params.id})
