@@ -102,7 +102,8 @@ export default class Register extends Component {
             alert('密码不一致,请重新输入密码!');
         }
         else {
-            request.post('/api/users')
+            request
+                .post('/api/users')
                 .send({
                     name: this.state.name,
                     account: this.state.account,
