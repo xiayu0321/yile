@@ -1,7 +1,6 @@
 import React from 'react';
 import TabsNavs from './component/navs.jsx';
 import './images/nav/nav.jpg';
-require('./css/app.css');
 
 export default class Index extends React.Component {
     render() {
